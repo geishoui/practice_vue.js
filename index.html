@@ -633,7 +633,7 @@ var app = new Vue({
     },
 </pre>
 <h6 class="pre-kind">style.css</h6>
-<pre class="prettyprint linenums:3">
+<pre class="prettyprint linenums:1">
     [v-cloak] {
         display: none;  // v-cloak のついた要素は読込が完了するまで display: none; が適用
     }
@@ -718,14 +718,14 @@ var app = new Vue({
     &lt;div v-on:click=&quot;myNestHandler(&#039;親div&#039;)&quot;&gt;&lt;button v-on:click.stop=&quot;myNestHandler(&#039;.stopありのbutton1&#039;)&quot;&gt;.stopあり&lt;/button&gt;&lt;/div&gt;
 </pre>
 <h6 class="pre-kind">main.js</h6>
-<pre class="prettyprint linenums:3">
+<pre class="prettyprint linenums:11">
     methods: {
         myNestHandler: function(comment) {
             alert(comment+'をクリックしました')
         },
     },
 </pre>
-                    <div class="demo">実際の動作
+                    <div class="demo"><p>実際の動作</p>
                         <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('.stopなしのbutton')">.stopなし</button></div>
                         <div v-on:click="myNestHandler('親div')"><button v-on:click.stop="myNestHandler('.stopありのbutton1')">.stopあり</button></div>
                     </div>
@@ -745,14 +745,14 @@ var app = new Vue({
     &lt;/div&gt;
 </pre>
 <h6 class="pre-kind">main.js</h6>
-<pre class="prettyprint linenums:3">
+<pre class="prettyprint linenums:11">
     methods: {
         myNestHandler: function(comment) {
             alert(comment+'をクリックしました')
         },
     },
 </pre>
-                    <div class="demo">実際の動作
+                    <div class="demo"><p>実際の動作</p>
                         <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureなし</button></div>
                         <div v-on:click.capture="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureあり</button></div>
                     </div>
@@ -784,14 +784,14 @@ var app = new Vue({
         &lt;p&gt;子要素&lt;/p&gt;
     &lt;/div&gt;</pre>
 <h6 class="pre-kind">main.js</h6>
-<pre class="prettyprint linenums:3">
+<pre class="prettyprint linenums:11">
     methods: {
         myNestHandler: function(comment) {
             alert(comment+'をクリックしました')
         },
     },
 </pre>
-                    <div class="demo">実際の動作
+                    <div class="demo"><P>実際の動作</P>
                         <!-- 通常、子要素をクリックすると親要素も反応する -->
                         <div v-on:click="myNestHandler('親div')" class="parent">親要素
                             <p>子要素</p>
@@ -802,6 +802,225 @@ var app = new Vue({
                         </div>
                     </div>
                 </section>
+
+                <h3>キー修飾子</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;input v-on:keydown.enter=&quot;myEnterKeyHandler&quot;&gt;
+    <span v-pre>{{myEnterKey}}</span>
+    &lt;input v-on:keydown.up.down.left.right=&quot;myCursorKeyHandler&quot;&gt;
+    <span v-pre>{{myCursorKey}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myEnterKey: 'Enterキーを押すと表示が変わります',
+        myCursorKey: 'カーソルキーのいずれかを押すと表示が変わります',
+    },
+    methods: {
+        myEnterKeyHandler: function() {
+            this.myEnterKey = 'Enterキーが押されました'
+        },
+        myCursorKeyHandler: function() {
+            this.myCursorKey = 'カーソルキーが押されました'
+        },
+    }
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <input v-on:keydown.enter="myEnterKeyHandler">
+                        {{myEnterKey}}<br>
+                        <input v-on:keydown.up.down.left.right="myCursorKeyHandler">
+                        {{myCursorKey}}
+                    </div>
+                </section>
+
+                <h3>システム修飾子</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;button v-on:click.shift.ctrl=&quot;myShiftButton&quot;&gt;Shift+Ctrlを押しながらクリック&lt;/button&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:11">
+    methods: {
+        mySystemtButton: function() {
+            alert('Shift+Ctrlを押しながらクリックしました')
+        }
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <button v-on:click.shift.ctrl="mySystemButton">Shift+Ctrlを押しながらクリック</button>
+                    </div>
+                </section>
+
+                <h2>SECTION14 フォーム入力バインディング</h2>
+                <h3>複数行テキスト</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;textarea v-model=&quot;myTextarea&quot;&gt;&lt;/textarea&gt;
+    <span v-pre>{{myTextarea}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myTextarea: '',
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <textarea v-model="myTextarea"></textarea>
+                        {{myTextarea}}
+                    </div>
+                </section>
+
+                <h3>チェックボックス</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    (単一)
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;myCheckbox&quot;&gt; <span v-pre>{{myCheckbox}}</span>&lt;br&gt;
+    (複数)
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;myCheckboxes&quot; value=&quot;A&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;myCheckboxes&quot; value=&quot;B&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;myCheckboxes&quot; value=&quot;C&quot;&gt; <span v-pre>{{myCheckboxes}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myCheckbox: true,
+        myCheckboxes: ['B'],
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        (単一)
+                        <input type="checkbox" v-model="myCheckbox"> {{myCheckbox}}<br>
+                        (複数)
+                        <input type="checkbox" v-model="myCheckboxes" value="A">
+                        <input type="checkbox" v-model="myCheckboxes" value="B">
+                        <input type="checkbox" v-model="myCheckboxes" value="C"> {{myCheckboxes}}
+                    </div>
+                </section>
+
+                <h3>ラジオボタン</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;input type=&quot;radio&quot; v-model=&quot;myRadio&quot; value=&quot;A&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myRadio&quot; value=&quot;B&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myRadio&quot; value=&quot;C&quot;&gt; <span v-pre>{{myRadio}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myRadio: ['B'],
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <input type="radio" v-model="myRadio" value="A">
+                        <input type="radio" v-model="myRadio" value="B">
+                        <input type="radio" v-model="myRadio" value="C"> {{myRadio}}
+                    </div>
+                </section>
+
+                <h3>セレクトボックス</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;select v-model=&quot;mySelect&quot;&gt;
+        &lt;option disabled=&quot;disabled&quot;&gt;選択してください&lt;/option&gt;
+        &lt;option value=&quot;A&quot;&gt;A&lt;/option&gt;
+        &lt;option value=&quot;B&quot;&gt;B&lt;/option&gt;
+        &lt;option value=&quot;C&quot;&gt;C&lt;/option&gt;
+    &lt;/select&gt;
+    <span v-pre>{{mySelect}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        mySelect: [],
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <select v-model="mySelect" multiple>
+                            <option disabled="disabled">選択してください</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                        {{mySelect}}
+                    </div>
+                </section>
+
+                <h3>画像ファイル</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;input type=&quot;file&quot; v-on:change=&quot;myImageHandle&quot;&gt;
+    &lt;div v-if=&quot;myImage&quot;&gt;
+        &lt;img v-bind:src=&quot;myImage&quot; width=&quot;500px&quot;&gt;
+    &lt;/div&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myImage: '',
+    },
+    methods: {
+        myImageHandle: function(event) {
+            var file = event.target.files[0]
+            if(file && file.type.match(/^image\/(png|jpeg)$/)) {
+                this.myImage = window.URL.createObjectURL(file)
+            }
+        },
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <input type="file" v-on:change="myImageHandle">
+                        <div v-if="myImage">
+                            <img v-bind:src="myImage" width="500px">
+                        </div>
+                    </div>
+                </section>
+
+                <h3>v-modelの修飾子 .lazy</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;input type=&quot;text&quot; v-model.lazy=&quot;myLazySync&quot;&gt;
+    <span v-pre>{{myLazySync}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myLazySync: 'フォーカスが外れたりエンターを押すと同期する',
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <input type="text" v-model.lazy="myLazySync">
+                        {{myLazySync}}
+                    </div>
+                </section>
+
+                <h3>v-modelの修飾子 .trim</h3>
+                <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;textarea v-model.trim=&quot;myTrim&quot;&gt;&lt;/textarea&gt;
+    <span v-pre>{{myTrim}}</span>
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myTrim: '\n   文字列前後の改行や   複数半角Spaceを削除',
+    },
+</pre>
+                    <div class="demo"><p>実際の動作</p>
+                        <textarea v-model.trim="myTrim"></textarea>
+                        {{myTrim}}
+                    </div>
+                </section>
+
 
 
 

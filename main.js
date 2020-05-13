@@ -144,6 +144,19 @@ var myapp3 = new Vue({
         myCount: 0,
 
         myMessage: '',
+
+        myEnterKey: 'Enterキーを押すと表示が変わります',
+        myCursorKey: 'カーソルキーのいずれかを押すと表示が変わります',
+
+        myTextarea: '',
+        myCheckbox: true,
+        myCheckboxes: ['B'],
+        myRadio: 'B',
+        mySelect: 'B',
+        mySelect: ['B'],
+        myImage: '',
+        myLazySync: 'フォーカスが外れたりエンターを押すと同期する',
+        myTrim: '\n   文字列前後の改行や   複数半角Spaceを削除',
     },
     
     // アプリケーションで使用するメソッド
@@ -162,6 +175,22 @@ var myapp3 = new Vue({
         },
         myclose: function() {
             alert(comment+'をクリックしました')
+        },
+
+        myEnterKeyHandler: function() {
+            this.myEnterKey = 'Enterキーが押されました'
+        },
+        myCursorKeyHandler: function() {
+            this.myCursorKey = 'カーソルキーが押されました'
+        },
+        mySystemButton: function() {
+            alert('Shift+Ctrlを押しながらクリックしました')
+        },
+        myImageHandle: function(event) {
+            var file = event.target.files[0]
+            if(file && file.type.match(/^image\/(png|jpeg)$/)) {
+                this.myImage = window.URL.createObjectURL(file)
+            }
         },
     },
     
