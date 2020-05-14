@@ -10,7 +10,6 @@
 </head>
 <body>
     <div id="myapp1">
-
     <h1>CHAPTER1 Vue.jsとフレームワークの基礎知識</h1>
     <section>
         <h2>section04 Vue.jsのインストール</h2>
@@ -208,7 +207,7 @@ var app = new Vue({
                 </div>
             </section>
 
-    </section>
+        </section>
     </div>
 
 
@@ -219,8 +218,8 @@ var app = new Vue({
         <section>
 
             <h2>SECTION8 テキストと属性のデータバインディング</h2>
-                <h3>テキストのデータバインディング</h3>
-                <section>
+            <h3>テキストのデータバインディング</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;p&gt;<span v-pre>{{ myMessage.value }}</span>&lt;/p&gt;
@@ -238,16 +237,16 @@ var app = new Vue({
         mynum: 2,
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <p>{{ myMessage.value }}</p>
-                        <p>{{ myMessage.value.length }}</p>
-                        <p>{{ myList[mynum1] }}</p>
-                        <p>{{ mynum1+mynum2 }}</p>
-                    </div>
-                </section>
-        
-                <h3>属性のデータバインディング</h3>
-                <section>
+                <div class="demo"><p>実際の動作</p>
+                    <p>{{ myMessage.value }}</p>
+                    <p>{{ myMessage.value.length }}</p>
+                    <p>{{ myList[mynum1] }}</p>
+                    <p>{{ mynum1+mynum2 }}</p>
+                </div>
+            </section>
+    
+            <h3>属性のデータバインディング</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input v-bind:value=&quot;myBindValue&quot;&gt;&lt;!-- ｛｛  ｝｝は使わない --&gt;
@@ -646,14 +645,14 @@ var app = new Vue({
         </section>
         </div>
 
-        <div id="myapp3">
+    <div id="myapp3">
 
-            <h1>CHAPTER3 イベントとフォーム入力の受け取り</h1>
+        <h1>CHAPTER3 イベントとフォーム入力の受け取り</h1>
+        <section>
+    
+        <h2>SECTION13 イベントハンドリング</h2>
+            <h3>メソッドイベントハンドラ</h3>
             <section>
-        
-            <h2>SECTION13 イベントハンドリング</h2>
-                <h3>メソッドイベントハンドラ</h3>
-                <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;button v-on:click=&quot;myClick&quot;&gt;alertが出ます&lt;/button&gt;&lt;br&gt;&lt;!-- methods:myClick()を呼び出し --&gt;
@@ -667,25 +666,25 @@ var app = new Vue({
         },
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <button v-on:click="myClick">alertが出ます</button><br>
-                        <button @click="myClick">alertが出ます</button>
-                    </div>
-                </section>
-        
-                <h3>インラインメソッドハンドラ</h3>
-                <section>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myClick">alertが出ます</button><br>
+                    <button @click="myClick">alertが出ます</button>
+                </div>
+            </section>
+    
+            <h3>インラインメソッドハンドラ</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
 &lt;button v-on:click=&quot;myCount++&quot;&gt;myCountを増加&lt;/button&gt;<span v-pre>{{myCount}}</span>&lt;!-- Javascriptの式を記述できる --&gt;
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <button v-on:click="myCount++">myCountを増加</button>{{myCount}}
-                    </div>
-                </section>
-        
-                <h3>フォーム入力の値</h3>
-                <section>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myCount++">myCountを増加</button>{{myCount}}
+                </div>
+            </section>
+    
+            <h3>フォーム入力の値</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input v-on:input=&quot;myHandleInput&quot;&gt;
@@ -703,13 +702,13 @@ var app = new Vue({
         }
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <input v-on:input="myHandleInput">
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-on:input="myHandleInput">
+                </div>
+            </section>
 
-                <h3>イベント修飾子 .stop</h3>
-                <section>
+            <h3>イベント修飾子 .stop</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;!-- 親要素のv-on:clickも発生 --&gt;
@@ -725,14 +724,14 @@ var app = new Vue({
         },
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('.stopなしのbutton')">.stopなし</button></div>
-                        <div v-on:click="myNestHandler('親div')"><button v-on:click.stop="myNestHandler('.stopありのbutton1')">.stopあり</button></div>
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('.stopなしのbutton')">.stopなし</button></div>
+                    <div v-on:click="myNestHandler('親div')"><button v-on:click.stop="myNestHandler('.stopありのbutton1')">.stopあり</button></div>
+                </div>
+            </section>
 
-                <h3>イベント修飾子 .capture</h3>
-                <section>
+            <h3>イベント修飾子 .capture</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;!-- 子要素のv-on:clickが先に発生 --&gt;
@@ -752,27 +751,27 @@ var app = new Vue({
         },
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureなし</button></div>
-                        <div v-on:click.capture="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureあり</button></div>
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <div v-on:click="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureなし</button></div>
+                    <div v-on:click.capture="myNestHandler('親div')"><button v-on:click="myNestHandler('button1')">.captureあり</button></div>
+                </div>
+            </section>
 
 
-                <h3>イベント修飾子 .prevent</h3>
-                <section>
+            <h3>イベント修飾子 .prevent</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;!-- リンクの遷移やformのsubmitなどの処理をキャンセルする --&gt;
     &lt;a href=&quot;https://www.google.com/?hl=ja&quot; v-on:click.right.prevent&gt;右クリック禁止&lt;/a&gt;
 </pre>
-                    <div class="demo">実際の動作
-                        <a href="https://www.google.com/?hl=ja" v-on:click.right.prevent>右クリック禁止</a>
-                    </div>
-                </section>
+                <div class="demo">実際の動作
+                    <a href="https://www.google.com/?hl=ja" v-on:click.right.prevent>右クリック禁止</a>
+                </div>
+            </section>
 
-                <h3>イベント修飾子 .self</h3>
-                <section>
+            <h3>イベント修飾子 .self</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;!-- 通常、子要素をクリックすると親要素も反応する --&gt;
@@ -791,20 +790,20 @@ var app = new Vue({
         },
     },
 </pre>
-                    <div class="demo"><P>実際の動作</P>
-                        <!-- 通常、子要素をクリックすると親要素も反応する -->
-                        <div v-on:click="myNestHandler('親div')" class="parent">親要素
-                            <p>子要素</p>
-                        </div><br>
-                        <!-- .selfで子要素をクリックしても親要素が反応しない。モーダルウィンドウなどに -->
-                        <div v-on:click.self="myNestHandler('親div')" class="parent">親要素
-                            <p>子要素</p>
-                        </div>
+                <div class="demo"><P>実際の動作</P>
+                    <!-- 通常、子要素をクリックすると親要素も反応する -->
+                    <div v-on:click="myNestHandler('親div')" class="parent">親要素
+                        <p>子要素</p>
+                    </div><br>
+                    <!-- .selfで子要素をクリックしても親要素が反応しない。モーダルウィンドウなどに -->
+                    <div v-on:click.self="myNestHandler('親div')" class="parent">親要素
+                        <p>子要素</p>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <h3>キー修飾子</h3>
-                <section>
+            <h3>キー修飾子</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input v-on:keydown.enter=&quot;myEnterKeyHandler&quot;&gt;
@@ -827,16 +826,16 @@ var app = new Vue({
         },
     }
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <input v-on:keydown.enter="myEnterKeyHandler">
-                        {{myEnterKey}}<br>
-                        <input v-on:keydown.up.down.left.right="myCursorKeyHandler">
-                        {{myCursorKey}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-on:keydown.enter="myEnterKeyHandler">
+                    {{myEnterKey}}<br>
+                    <input v-on:keydown.up.down.left.right="myCursorKeyHandler">
+                    {{myCursorKey}}
+                </div>
+            </section>
 
-                <h3>システム修飾子</h3>
-                <section>
+            <h3>システム修飾子</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;button v-on:click.shift.ctrl=&quot;myShiftButton&quot;&gt;Shift+Ctrlを押しながらクリック&lt;/button&gt;
@@ -849,14 +848,14 @@ var app = new Vue({
         }
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <button v-on:click.shift.ctrl="mySystemButton">Shift+Ctrlを押しながらクリック</button>
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click.shift.ctrl="mySystemButton">Shift+Ctrlを押しながらクリック</button>
+                </div>
+            </section>
 
-                <h2>SECTION14 フォーム入力バインディング</h2>
-                <h3>複数行テキスト</h3>
-                <section>
+            <h2>SECTION14 フォーム入力バインディング</h2>
+            <h3>複数行テキスト</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;textarea v-model=&quot;myTextarea&quot;&gt;&lt;/textarea&gt;
@@ -868,14 +867,14 @@ var app = new Vue({
         myTextarea: '',
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <textarea v-model="myTextarea"></textarea>
-                        {{myTextarea}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <textarea v-model="myTextarea"></textarea>
+                    {{myTextarea}}
+                </div>
+            </section>
 
-                <h3>チェックボックス</h3>
-                <section>
+            <h3>チェックボックス</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     (単一)
@@ -892,18 +891,18 @@ var app = new Vue({
         myCheckboxes: ['B'],
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        (単一)
-                        <input type="checkbox" v-model="myCheckbox"> {{myCheckbox}}<br>
-                        (複数)
-                        <input type="checkbox" v-model="myCheckboxes" value="A">
-                        <input type="checkbox" v-model="myCheckboxes" value="B">
-                        <input type="checkbox" v-model="myCheckboxes" value="C"> {{myCheckboxes}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    (単一)
+                    <input type="checkbox" v-model="myCheckbox"> {{myCheckbox}}<br>
+                    (複数)
+                    <input type="checkbox" v-model="myCheckboxes" value="A">
+                    <input type="checkbox" v-model="myCheckboxes" value="B">
+                    <input type="checkbox" v-model="myCheckboxes" value="C"> {{myCheckboxes}}
+                </div>
+            </section>
 
-                <h3>ラジオボタン</h3>
-                <section>
+            <h3>ラジオボタン</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input type=&quot;radio&quot; v-model=&quot;myRadio&quot; value=&quot;A&quot;&gt;
@@ -916,15 +915,15 @@ var app = new Vue({
         myRadio: ['B'],
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <input type="radio" v-model="myRadio" value="A">
-                        <input type="radio" v-model="myRadio" value="B">
-                        <input type="radio" v-model="myRadio" value="C"> {{myRadio}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <input type="radio" v-model="myRadio" value="A">
+                    <input type="radio" v-model="myRadio" value="B">
+                    <input type="radio" v-model="myRadio" value="C"> {{myRadio}}
+                </div>
+            </section>
 
-                <h3>セレクトボックス</h3>
-                <section>
+            <h3>セレクトボックス</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;select v-model=&quot;mySelect&quot;&gt;
@@ -941,19 +940,19 @@ var app = new Vue({
         mySelect: [],
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <select v-model="mySelect" multiple>
-                            <option disabled="disabled">選択してください</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
-                        {{mySelect}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <select v-model="mySelect" multiple>
+                        <option disabled="disabled">選択してください</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    {{mySelect}}
+                </div>
+            </section>
 
-                <h3>画像ファイル</h3>
-                <section>
+            <h3>画像ファイル</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input type=&quot;file&quot; v-on:change=&quot;myImageHandle&quot;&gt;
@@ -975,16 +974,16 @@ var app = new Vue({
         },
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <input type="file" v-on:change="myImageHandle">
-                        <div v-if="myImage">
-                            <img v-bind:src="myImage" width="500px">
-                        </div>
+                <div class="demo"><p>実際の動作</p>
+                    <input type="file" v-on:change="myImageHandle">
+                    <div v-if="myImage">
+                        <img v-bind:src="myImage" width="500px">
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <h3>v-modelの修飾子 .lazy</h3>
-                <section>
+            <h3>v-modelの修飾子 .lazy</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;input type=&quot;text&quot; v-model.lazy=&quot;myLazySync&quot;&gt;
@@ -996,14 +995,14 @@ var app = new Vue({
         myLazySync: 'フォーカスが外れたりエンターを押すと同期する',
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <input type="text" v-model.lazy="myLazySync">
-                        {{myLazySync}}
-                    </div>
-                </section>
+                <div class="demo"><p>実際の動作</p>
+                    <input type="text" v-model.lazy="myLazySync">
+                    {{myLazySync}}
+                </div>
+            </section>
 
-                <h3>v-modelの修飾子 .trim</h3>
-                <section>
+            <h3>v-modelの修飾子 .trim</h3>
+            <section>
 <h6 class="pre-kind">index.html</h6>
 <pre class="prettyprint linenums:10">
     &lt;textarea v-model.trim=&quot;myTrim&quot;&gt;&lt;/textarea&gt;
@@ -1015,25 +1014,688 @@ var app = new Vue({
         myTrim: '\n   文字列前後の改行や   複数半角Spaceを削除',
     },
 </pre>
-                    <div class="demo"><p>実際の動作</p>
-                        <textarea v-model.trim="myTrim"></textarea>
-                        {{myTrim}}
-                    </div>
-                </section>
-
-
-
-
-
+                <div class="demo"><p>実際の動作</p>
+                    <textarea v-model.trim="myTrim"></textarea>
+                    {{myTrim}}
+                </div>
             </section>
-            </div>
+
+            <h2>SECTION15 マウント要素外のイベントと操作</h2>
+            <h3>スクロールイベントの取得</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;p&gt;現在のスクロール値は{{scrollY}}&lt;/p&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        mytimer: null,
+        scrollY: 0,
+    },
+    created: function() {
+        // ハンドラを登録
+        window.addEventListener('scroll',this.myScrollHandler)
+    },
+    beforeDestroy: function() {
+        // ハンドラを解除(不要になっても自動的に解除されないため)
+        window.removeEventListener('scroll',this.myScrollHandler)
+    },
+    methods: {
+        myScrollHandler: function() {
+            if(this.mytimer === null) {
+                this.mytimer = setTimeout(function() {
+                    this.scrollY = window.scrollY
+                    clearTimeout(this.mytimer)
+                    this.mytimer = null
+                }.bind(this), 200)  // 発生頻度の高いイベントは200msくらいの間隔で
+            }
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <p>現在のスクロール値は{{scrollY}}</p>
+                </div>
+            </section>
+
+        </section>
+    </div>
+
+    <div id="myapp4">
+
+        <h1>データの監視と加工</h1>
+        <section>
+            <h2>SECTION16 算出プロパティで処理を含むデータを作成する</h2>
+            <h3>算出プロパティの使い方</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10">
+    &lt;p&gt;半径 <span v-pre>{{myRadius}}</span> の円の周の長さは <span v-pre>{{myCircle.length}}</span>、<span v-pre>{{myCircle.area}}</span>&lt;/p&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3">
+    data: {
+        myRadius: 13,
+    },
+    computed: {
+        myCircle: function() {
+            return {
+                length: this.myRadius * 2 * 3.14,
+                area: Math.pow(this.myRadius, 2) * 3.14
+            }
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <p>半径 {{myRadius}} の円の周の長さは {{myCircle.length}}、面積は {{myCircle.area}}</p>
+                </div>
+            </section>
+        
+            <h3>ゲッターとセッター</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;input v-model.number=&quot;myData&quot;&gt;{{myData}}&lt;br&gt;
+    &lt;input v-model.number=&quot;myCalc&quot;&gt;{{myCalc}}
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myData: 100,
+    },
+    computed: {
+        myCalc: {
+            get: function() {
+                // myDataの値を受け取ってmyCalcとして加工して返す
+                return this.myData / 2
+            },
+            set: function(val) {
+                // myCalcの値を受け取ってmyDataとして加工して返す。getとsetで双方向にデータのやり取りができる
+                this.myData = val * 2
+            },
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-model.number="myData">{{myData}}<br>
+                    <input v-model.number="myCalc">{{myCalc}}
+                </div>
+            </section>
+
+            <h3>キャッシュ機能 …メソッドとの大きな違い</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;ol&gt;
+        &lt;li&gt;{{myComputedData}}&lt;/li&gt;
+        &lt;li&gt;{{myComputedData}}&lt;/li&gt;&lt;!-- 同じ値が算出される(キャッシュされる) --&gt;
+    &lt;/ol&gt;
+    &lt;ol&gt;
+        &lt;li&gt;{{myMethodsData()}}&lt;/li&gt;
+        &lt;li&gt;{{myMethodsData()}}&lt;/li&gt;&lt;!-- 毎回違う値が算出される --&gt;
+    &lt;/ol&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    methods: {
+        myMethodsData: function() {
+            return Math.random()
+        },
+    },
+    computed: {
+        myComputedData: function() {
+            return Math.random()
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <ol>
+                        <li>{{myComputedData}}</li>
+                        <li>{{myComputedData}}</li><!-- 同じ値が算出される(キャッシュされる) -->
+                    </ol>
+                    <ol>
+                        <li>{{myMethodsData()}}</li>
+                        <li>{{myMethodsData()}}</li><!-- 毎回違う値が算出される -->
+                    </ol>
+                </div>
+            </section>
+
+            <h3>リストの絞り込みに利用しよう</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;!-- Lodashライブラリを読み込む --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;input v-model.number=&quot;myLimitPrice&quot;&gt;円以下に絞り込む 
+    &lt;input v-model.number=&quot;myLimitItem&quot;&gt;件を表示
+    &lt;button v-on:click=&quot;myOrder=!myOrder&quot;&gt;ソート切替&lt;/button&gt;
+    &lt;p&gt;{{myMatched.length}}件中{{myLimited.length}}件を表示中&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li v-for=&quot;item in myLimited&quot; v-bind:key=&quot;myItems.id&quot;&gt;
+            {{ item.name }} {{ item.price }}
+        &lt;/li&gt;
+    &lt;/ul&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myLimitPrice: 300,
+        myLimitItem: 3,
+        myItems: [
+            { id: 1, name: 'りんご', price: 100 },
+            { id: 2, name: 'ばなな', price: 200 },
+            { id: 3, name: 'いちご', price: 300 },
+            { id: 4, name: 'オレンジ', price: 400 },
+            { id: 5, name: 'メロン', price: 500 },
+        ],
+    },
+    computed: {
+        myMatched: function() {
+            // myLimitPrice円以下のリストを返す
+            return this.myItems.filter(function(el) {
+                return el.price <= this.myLimitPrice
+            }, this)
+        },
+        mySorted:function() {
+            return _.orderBy(this.myMatched, 'price', this.myOrder ? 'desc' : 'asc')
+        },
+        myLimited: function() {
+            // myMatchedで絞ったデータの0番目からmyLimitItem番目まで
+            return this.mySorted.slice(0, this.myLimitItem)
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-model.number="myLimitPrice">円以下に絞り込む 
+                    <input v-model.number="myLimitItem">件を表示
+                    <button v-on:click="myOrder=!myOrder">ソート切替</button>
+                    <p>{{myMatched.length}}件中{{myLimited.length}}件を表示中</p>
+                    <ul>
+                        <li v-for="item in myLimited" v-bind:key="myItems.id">
+                            {{ item.name }} {{ item.price }}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <h2>SECTION17 ウォッチャでデータを監視して処理を自動化する</h2>
+            <h3>ウォッチャの使い方</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;input v-model=&quot;myMonitored&quot;&gt;
+    {{myChangedLog}}
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myMonitored: 100,
+        myNewVal: 0,
+        myOldVal: 0,
+        myChangedLog: 'inputの変化を監視しています',
+    },
+    watch: {
+        myMonitored: {
+            // myMonitoredが変化したときに行う処理
+            handler: function(myNewVal, myOldVal) {
+                this.myChangedLog = myOldVal+'が'+myNewVal+'に変更されました'
+            },
+            // ネストされたオブジェクトも監視するか
+            deep: true,
+            // 初期読み込み時にも呼び出すか
+            immediate: false,
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-model="myMonitored">
+                    {{myChangedLog}}
+                </div>
+            </section>
+
+            <h3>フォームを監視してAPIからデータを取得</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;select v-model=&quot;myCurrent&quot;&gt;
+        &lt;option v-for=&quot;topic in myTopics&quot; v-bind:value=&quot;topic.value&quot;&gt;
+            {{ topic.name }}
+        &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div v-for=&quot;item in myList&quot;&gt;{{ item.full_name }}&lt;/div&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myList: [],
+        myCurrent: '',
+        myTopics: [
+            { value: 'vue', name: 'Vue.js' },
+            { value: 'jQuery', name: 'jQuery' }
+        ],
+    },
+    watch: {
+        myCurrent: function (val) {
+            // GitHubのAPIからトピックのリポジトリを検索
+            axios.get('https://api.github.com/search/repositories', {
+                params: {
+                    q: 'topic:' + val
+                }
+            }).then(function (response) {
+              this.myList = response.data.items
+            }.bind(this))
+        }
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <select v-model="myCurrent">
+                        <option v-for="topic in myTopics" v-bind:value="topic.value">
+                            {{ topic.name }}
+                        </option>
+                    </select>
+                    <div v-for="item in myList">{{ item.full_name }}</div>
+                </div>
+            </section>
+
+            <h2>SECTION18 フィルタでテキストの変換処理を行う</h2>
+            <h3>フィルタの使い方</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    {{ myFilteredData | myFilter }}
+    &lt;div v-bind:id=&quot;myFilteredData | myFilter&quot;&gt;&lt;/div&gt;&lt;!-- 属性値に設定する場合 --&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myFilteredData: 19800,
+    },
+    filters: {
+        myFilter: function (val) {
+            // カンマ区切りした数に変換
+            return val.toLocaleString()
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    {{ myFilteredData | myFilter }}
+                    <div v-bind:id="myFilteredData | myFilter"></div><!-- 属性値に設定する場合 -->
+                </div>
+            </section>
+
+            <h3>複数のフィルタをつなげて使う</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;input v-model=&quot;myAngle&quot;&gt; 度は {{ myAngle | radian | round }} ラジアンだよ
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myAngle: 180,
+    },
+    filters: {
+        // 度からラジアンに変換するフィルタ
+        radian: function (val) {
+            return val * Math.PI / 180
+        },
+        // 小数点以下を第2位に丸めるフィルタ
+        round: function (val) {
+            return Math.round(val * 100) / 100
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <input v-model="myAngle"> 度は {{ myAngle | radian | round }} ラジアンだよ
+                </div>
+            </section>
+        
+        </section>
+        </div>
+
+    <div id="myapp5">
+
+        <h1>コンポーネントでUI部品を作る</h1>
+        <section>
+            <h2>SECTION22 コンポーネントの定義方法</h2>
+            <h3>コンポーネントの登録</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;div id=&quot;myapp&quot;&gt;
+        &lt;my-component&gt;&lt;/my-component&gt;
+    &lt;/div&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:1" v-pre>
+// コンポーネントはnew Vueの前に記述
+// どの部品からでも呼び出せる
+Vue.component('my-component', {
+    template: '&lt;p&gt;{{ myMessage }}&lt;/p&gt;',
+    // dataはオブジェクトを返す変数にする
+    data: function() {
+        return {
+            myMessage: 'This is my component',
+        }
+    },
+})
+
+var myapp = new Vue({
+    // マウントする要素
+    el: '#myapp',
+})
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <my-component></my-component>
+                </div>
+            </section>
+
+            <h3>コンポーネントを複数回使用したときの挙動</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;my-random-number&gt;&lt;/my-random-number&gt;
+    &lt;my-random-number&gt;&lt;/my-random-number&gt;
+    &lt;my-random-number&gt;&lt;/my-random-number&gt; &lt;!-- 呼び出すごとに別々のインスタンスとして扱われる --&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:1" v-pre>
+Vue.component('my-random-number', {
+    template: '&lt;p&gt;{{ myRandNum }}&lt;/p&gt;',
+    data: function() {
+        return {
+            myRandNum: Math.random(),
+        }
+    },
+})
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <my-random-number></my-random-number>
+                    <my-random-number></my-random-number>
+                    <my-random-number></my-random-number> <!-- 呼び出すごとに別々のインスタンスとして扱われる -->
+                </div>
+            </section>
+
+            <h2>コンポーネント間の通信</h2>
+            <h3>親から子へデータを渡す props</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;!-- 親側のテンプレート --&gt;
+    &lt;my-compo-child myval=&quot;子A&quot;&gt;&lt;/my-compo-child&gt;
+    &lt;my-compo-child myval=&quot;子B&quot;&gt;&lt;/my-compo-child&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:1" v-pre>
+// 子のコンポーネント
+Vue.component(&#039;my-compo-child&#039;, {
+    template: &#039;&lt;p&gt;{{ myval }}&lt;/p&gt;&#039;,
+    // 受け取る属性名を指定
+    props: [&#039;myval&#039;],
+})
+// ※propsはリアクティブな状態で受け取るため、親側でデータを更新すると同期される
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <!-- 親側のテンプレート -->
+                    <my-compo-child myval="子A"></my-compo-child>
+                    <my-compo-child myval="子B"></my-compo-child>
+                </div>
+            </section>
+
+            <h3>属性の上書き</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;!-- idは親のidが優先で上書き，classは子のclassを追加。値は子が優先 --&gt;
+    &lt;my-over-ride id=&quot;parentid&quot; class=&quot;parentclass&quot;&gt;This is ParentTemplate&lt;/my-over-ride&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:1" v-pre>
+Vue.component('my-over-ride', {
+    template: &#039;&lt;p id=&quot;childid&quot; class=&quot;childclass&quot;&gt;This is ChildComponent&lt;/p&gt;&#039;,
+})
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <!-- idは親のidが優先で上書き，classは子のclassを追加。値は子が優先 -->
+                    <my-over-ride id="parentid" class="parentclass">This is ParentTemplate</my-over-ride>
+                    &lt;p id=&quot;parentid&quot; class=&quot;childclass parenclass&quot;&gt;This is ChildComponent&lt;/p&gt;
+                </div>
+            </section>
+
+            <h3>子から親へデータを渡す $emit</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;my-event-up v-on:my-childs-event=&quot;myParentMethod&quot;&gt;&lt;/my-event-up&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+// 子コンポーネント
+Vue.component('my-event-up', {
+    template: &#039;&lt;button v-on:click=&quot;myClick&quot;&gt;子のボタン&lt;/button&gt;&#039;,
+    methods: {
+        myClick: function() {
+            this.$emit('my-childs-event')
+        },
+    },
+})
+// 親テンプレート
+var myapp = new Vue({
+    el: '#myapp5',
+    methods: {
+        myParentMethod: function() {
+            alert('親のメソッドを実行')
+        }
+    },
+})
+// 子のbuttonを押すと
+// myClickメソッドを呼び出し
+// 親へmy-childs-eventを$emitで渡す
+// 親はmy-childs-eventを受け取ると
+// myParentMethodを実行する
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <my-event-up v-on:my-childs-event="myParentMethod"></my-event-up>
+                </div>
+            </section>
+
+            <h2>SECTION24 スロットを使ったコンポーネントのカスタマイズ</h2>
+            <h3>デフォルトスロット</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;my-tag&gt;HTMLタグをコンポーネントで追加&lt;/my-tag&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:1" v-pre>
+// &lt;slot&gt;&lt;/slot&gt;の内側に親のコンテンツを展開
+Vue.component(&#039;my-tag&#039;, {
+    template: &#039;&lt;h3&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/h3&gt;&#039;,
+})
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <my-tag>HTMLタグをコンポーネントで追加</my-tag>
+                </div>
+            </section>
+
+            <h3>名前付きスロット</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;my-named-slot&gt;
+        &lt;template slot=&quot;my-head3&quot;&gt;Hello, Vue.js!&lt;/template&gt;
+        &lt;template slot=&quot;my-head4&quot;&gt;&lt;/template&gt; &lt;!-- 囲むタグはpでもspanでも何でもOK --&gt;
+    &lt;/my-named-slot&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+Vue.component(&#039;my-named-slot&#039;, {
+    template:   &#039;&lt;div&gt;&#039;+    // ※template は兄弟要素だけ書けないのでdivなどで囲む
+                    &#039;&lt;h3&gt;&lt;slot name=&quot;my-head3&quot;&gt;デフォルト値&lt;/slot&gt;&lt;/h3&gt;&#039;+
+                    &#039;&lt;h4&gt;&lt;slot name=&quot;my-head4&quot;&gt;デフォルト値&lt;slot&gt;&lt;/h4&gt;&#039;+
+                &#039;&lt;/div&gt;&#039;
+});
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <my-named-slot>
+                        <template slot="my-head3">Hello, Vue.js!</template>
+                        <template slot="my-head4"></template> <!-- 囲むタグはpでもspanでも何でもOK -->
+                    </my-named-slot>
+                </div>
+            </section>
+
+            <h2>SECTION26 テンプレートの定義方法</h2>
+            <h3>コンポーネントの命名規則</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;my-component&gt;&lt;/my-component&gt; &lt;!-- OK (ケバブケース) --&gt;
+    &lt;myComponent&gt;&lt;/myComponent&gt; &lt;!-- NG (キャメルケース) --&gt;
+
+    &lt;table&gt;
+        &lt;my-row&gt;...&lt;/my-row&gt; &lt;!-- HTML解析時に無効なコンテンツとして削除される --&gt;
+        &lt;tr is=&quot;my-row&quot;&gt;&lt;/tr&gt; &lt;!-- OK --&gt;
+    &lt;/table&gt;
+    &lt;select&gt;
+        &lt;my-option&gt;...&lt;/my-option&gt; &lt;!-- HTML解析時に無効なコンテンツとして削除される --&gt;
+        &lt;option is=&quot;my-option&quot;&gt;&lt;/option&gt; &lt;!-- OK --&gt;
+    &lt;/select&gt;
+</pre>
+            </section>
+
+            <h2>SECTION27 そのほかの機能やオプション</h2>
+            <h3>動的コンポーネント</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;!-- XOR(排他的論理和)で0と1をトグル --&gt;
+    &lt;button v-on:click=&quot;myToggle^=1&quot;&gt;toggle&lt;/button&gt;
+    &lt;div v-bind:is=&quot;component&quot;&gt;&lt;/div&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+Vue.component(&#039;my-component-a&#039;, {
+    template: &#039;&lt;h3&gt;component-a&lt;/h3&gt;&#039;
+})
+Vue.component(&#039;my-component-b&#039;, {
+    template: &#039;&lt;h4&gt;component-b&lt;/h4&gt;&#039;
+})
+var myapp5 = new Vue({
+    el: &#039;#myapp&#039;,
+    data: {
+        myComponentType: [&#039;my-component-a&#039;, &#039;my-component-b&#039;],
+        myToggle: 0,
+    },
+    computed: {
+        component: function() {
+            // myToggleの値でコンポーネントを選択
+            return this.myComponentType[this.myToggle]
+        }
+    },
+})
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <!-- XOR(排他的論理和)で0と1をトグル -->
+                    <button v-on:click="myToggle^=1">toggle</button>
+                    <div v-bind:is="component"></div>
+                </div>
+            </section>
+
+            <h3>keep-alive で状態を維持する</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;mycurrent=&#039;my-compo-board&#039;&quot;&gt;メッセージ一覧&lt;/button&gt;
+    &lt;button v-on:click=&quot;mycurrent=&#039;my-compo-form&#039;&quot;&gt;投稿フォーム&lt;/button&gt;
+    &lt;div v-bind:is=&quot;mycurrent&quot;&gt;通常は切替でフォームなどの変更が維持されない&lt;/div&gt;
+    &lt;keep-alive&gt;
+        &lt;div v-bind:is=&quot;mycurrent&quot;&gt;keep-aliveで囲むと変更が維持される&lt;/div&gt;
+    &lt;/keep-alive&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+Vue.component(&#039;my-compo-board&#039;, {
+    template: &#039;&lt;div&gt;Message Board&lt;/div&gt;&#039;
+})
+Vue.component(&#039;my-compo-form&#039;, {
+    template: &#039;&lt;div&gt;&lt;textarea v-model=&quot;myTextarea&quot;&gt;&lt;/textarea&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;&#039;,
+    data: function() {
+        return {myTextarea: &#039;投稿内容&#039;}
+    }
+})
+var myapp = new Vue({
+    el: '#myapp',
+    // アプリケーションで使用するデータ
+    data: {
+        mycurrent: 'my-compo-form',
+    },
+})
+    
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="mycurrent='my-compo-board'">メッセージ一覧</button>
+                    <button v-on:click="mycurrent='my-compo-form'">投稿フォーム</button>
+                    <div v-bind:is="mycurrent">通常は切替でフォームなどの変更が維持されない</div>
+                    <keep-alive>
+                        <div v-bind:is="mycurrent">keep-aliveで囲むと変更が維持される</div>
+                    </keep-alive>
+                </div>
+            </section>
+
+
+
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="sidebar">
         <ul>
             <li class="done"><a href="#myapp1">CHAPTER 1</a></li>
             <li class="done"><a href="#myapp2">CHAPTER 2</a></li>
             <li class="done"><a href="#myapp3">CHAPTER 3</a></li>
-            <li class=""><a href="#myapp4">CHAPTER 4</a></li>
+            <li class="done"><a href="#myapp4">CHAPTER 4</a></li>
             <li class=""><a href="#myapp5">CHAPTER 5</a></li>
             <li class=""><a href="#myapp6">CHAPTER 6</a></li>
             <li class=""><a href="#myapp7">CHAPTER 7</a></li>
@@ -1047,6 +1709,8 @@ var app = new Vue({
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Lodash -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 
     <!-- シンタックスハイライト -->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian"></script>

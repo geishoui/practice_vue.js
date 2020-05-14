@@ -157,6 +157,9 @@ var myapp3 = new Vue({
         myImage: '',
         myLazySync: 'フォーカスが外れたりエンターを押すと同期する',
         myTrim: '\n   文字列前後の改行や   複数半角Spaceを削除',
+
+        mytimer: null,
+        scrollY: 0,
     },
     
     // アプリケーションで使用するメソッド
@@ -192,6 +195,16 @@ var myapp3 = new Vue({
                 this.myImage = window.URL.createObjectURL(file)
             }
         },
+
+        myScrollHandler: function() {
+            if(this.mytimer === null) {
+                this.mytimer = setTimeout(function() {
+                    this.scrollY = window.scrollY
+                    clearTimeout(this.mytimer)
+                    this.mytimer = null
+                }.bind(this), 200)
+            }
+        },
     },
     
     // 算出プロパティ。関数で処理された結果をデータとして返す
@@ -201,6 +214,262 @@ var myapp3 = new Vue({
     
     // ライフサイクルフック。特定のタイミングで自動的に呼び出される関数
     created: function() {
+        // ハンドラを登録
+        window.addEventListener('scroll',this.myScrollHandler)
+    },
+    beforeDestroy: function() {
+        // ハンドラを解除(不要になっても自動的に解除されないため)
+        window.removeEventListener('scroll',this.myScrollHandler)
+    },
+})
 
+var myapp4 = new Vue({
+    // マウントする要素
+    el: '#myapp4',
+    
+    // アプリケーションで使用するデータ
+    data: {
+        myRadius: 3,
+        myData: 100,
+
+        myLimitPrice: 300,
+        myLimitItem: 3,
+        myItems: [
+            { id: 1, name: 'りんご', price: 100 },
+            { id: 2, name: 'ばなな', price: 200 },
+            { id: 3, name: 'いちご', price: 300 },
+            { id: 4, name: 'オレンジ', price: 400 },
+            { id: 5, name: 'メロン', price: 500 },
+        ],
+        myOrder: false,
+
+        myMonitored: 100,
+        myNewVal: 0,
+        myOldVal: 0,
+        myChangedLog: 'inputの変化を監視しています',
+
+        myList: [],
+        myCurrent: '',
+        myTopics: [
+            { value: 'vue', name: 'Vue.js' },
+            { value: 'jQuery', name: 'jQuery' }
+        ],
+
+        myFilteredData: 19800,
+        myAngle: 180,
+
+        myPlay: false,
+    },
+    
+    // アプリケーションで使用するメソッド
+    methods: {
+        myMethodsData: function() {
+            return Math.random()
+        },
+    },
+    
+    // 算出プロパティ。関数で処理された結果をデータとして返す
+    computed: {
+        myCircle: function() {
+            return {
+                length: this.myRadius * 2 * 3.14,
+                area: Math.pow(this.myRadius, 2) * 3.14,
+            }
+        },
+
+        myCalc: {
+            get: function() {
+                // myDataの値を受け取ってmyCalcとして加工して返す
+                return this.myData / 2
+            },
+            set: function(val) {
+                // myCalcの値を受け取ってmyDataとして加工して返す
+                this.myData = val * 2
+            },
+        },
+
+        myComputedData: function() {
+            return Math.random()
+        },
+
+        myMatched: function() {
+            // myLimitPrice円以下のリストを返す
+            return this.myItems.filter(function(el) {
+                return el.price <= this.myLimitPrice
+            }, this)
+        },
+        mySorted: function() {
+            return _.orderBy(this.myMatched, 'price', this.myOrder ? 'desc' : 'asc')
+        },
+        myLimited: function() {
+            // myMatchedで絞ったデータの0番目からmyLimitItem番目まで
+            return this.mySorted.slice(0, this.myLimitItem)
+        },
+    },
+    
+    // ライフサイクルフック。特定のタイミングで自動的に呼び出される関数
+    created: function() {
+        // 他にもbeforeCreate, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed, errorCaptured
+    },
+
+    watch: {
+        myMonitored: {
+            // myMonitoredが変化したときに行う処理
+            handler: function(myNewVal, myOldVal) {
+                this.myChangedLog = myOldVal+'が'+myNewVal+'に変更されました'
+            },
+            // ネストされたオブジェクトも監視するか
+            deep: true,
+            // 初期読み込み時にも呼び出すか
+            immediate: false,
+        },
+
+        myCurrent: function (val) {
+            // GitHubのAPIからトピックのリポジトリを検索
+            axios.get('https://api.github.com/search/repositories', {
+                params: {
+                    q: 'topic:' + val
+                }
+            }).then(function (response) {
+              this.myList = response.data.items
+            }.bind(this))
+        }
+    },
+
+    filters: {
+        myFilter: function (val) {
+            // カンマ区切りした数に変換
+            return val.toLocaleString()
+        },
+        // 度からラジアンに変換するフィルタ
+        radian: function (val) {
+            return val * Math.PI / 180
+        },
+        // 小数点以下を第2位に丸めるフィルタ
+        round: function (val) {
+            return Math.round(val * 100) / 100
+        },
+    },
+
+    directives: {
+        myDirective: {
+            bind: function (el, binding) {
+                // ディレクティブが初めて要素と紐づいたときの処理
+            },
+            inserted: function (el, binding) {
+                // 紐づいた要素が親Nodeに挿入されたときの処理
+            },
+            update: function (el, binding) {
+                // 紐づいた要素を包含しているコンポーネントのVNodeが更新されたときの処理
+            },
+            componentUpdated: function (el, binding) {
+                // 包含しているコンポーネントと子コンポーネントのVNodeが更新されたときの処理
+            },
+            unbind: function (el, binding) {
+                // 紐づいていた要素からディレクティブが削除されるときの処理
+            },
+        },
+
+        video(el, binding) {
+            if(binding.value !== binding.oldValue) {
+                binding.value ? el.play() : el.pause()
+            }
+        },
+    },
+})
+
+
+
+// コンポーネントはnew Vueの前に記述
+// どの部品からでも呼び出せる
+Vue.component('my-component', {
+    template: '<p>{{ myMessage }}</p>',
+    // dataはオブジェクトを返す変数にする
+    data: function() {
+        return {
+            myMessage: 'This is my component',
+        }
+    },
+})
+Vue.component('my-random-number', {
+    template: '<p>{{ myRandNum }}</p>',
+    data: function() {
+        return {
+            myRandNum: Math.random(),
+        }
+    },
+})
+// 子のコンポーネント
+Vue.component('my-compo-child', {
+    template: '<p>{{ myval }}</p>',
+    // 受け取る属性名を指定
+    props: ['myval'],
+})
+Vue.component('my-over-ride', {
+    template: '<p id="childid" class="childclass">This is ChildComponent</p>',
+})
+Vue.component('my-event-up', {
+    template: '<button v-on:click="myClick">子のボタン</button>',
+    methods: {
+        myClick: function() {
+            this.$emit('my-childs-event')
+        },
+    },
+})
+// <slot></slot>の内側に親のコンテンツを展開
+Vue.component('my-tag', {
+    template: '<h3><slot></slot></h3>'
+})
+Vue.component('my-named-slot', {
+    template:   '<div>'+
+                    '<h3><slot name="my-head3">デフォルト値</slot></h3>'+
+                    '<h4><slot name="my-head4">デフォルト値<slot></h4>'+
+                '</div>'
+})
+Vue.component('my-component-a', {
+    template: '<h3>component-a</h3>'
+})
+Vue.component('my-component-b', {
+    template: '<h4>component-b</h4>'
+})
+Vue.component('my-compo-board', {
+    template: '<div>Message Board</div>'
+})
+Vue.component('my-compo-form', {
+    template: '<div><textarea v-model="myTextarea"></textarea><slot></slot></div>',
+    data: function() {
+        return {myTextarea: '投稿内容'}
+    }
+})
+var myapp5 = new Vue({
+    // マウントする要素
+    el: '#myapp5',
+    
+    // アプリケーションで使用するデータ
+    data: {
+        myComponentType: ['my-component-a', 'my-component-b'],
+        myToggle: 0,
+
+        mycurrent: 'my-compo-form',
+    },
+    
+    // アプリケーションで使用するメソッド
+    methods: {
+        myParentMethod: function() {
+            alert('親のメソッドを実行')
+        }
+    },
+    
+    // 算出プロパティ。関数で処理された結果をデータとして返す
+    computed: {
+        component: function() {
+            // myToggleの値でコンポーネントを選択
+            return this.myComponentType[this.myToggle]
+        }
+    },
+    
+    // ライフサイクルフック。特定のタイミングで自動的に呼び出される関数
+    created: function() {
+        // 他にもbeforeCreate, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed, errorCaptured
     },
 })
