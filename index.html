@@ -982,6 +982,23 @@ var app = new Vue({
                 </div>
             </section>
 
+            <h3>カラーコード</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;input type=&quot;color&quot; v-model=&quot;myColor&quot;&gt; &lt;input v-model=&quot;myColor&quot;&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myColor: '#ff7800',
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <input type="color" v-model="myColor"> <input v-model="myColor">
+                </div>
+            </section>
+
             <h3>v-modelの修飾子 .lazy</h3>
             <section>
 <h6 class="pre-kind">index.html</h6>
@@ -1643,49 +1660,347 @@ var myapp = new Vue({
                 </div>
             </section>
 
-
-
         </section>
     </div>
 
+    <div id="myapp6">
 
+        <h1>トランジションとアニメーション</h1>
+        <section>
+            <h2>SECTION28 トランジションとは </h2>
+            <h3>スタイルを定義して動かしてみよう</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;myToggle=!myToggle&quot;&gt;切替&lt;/button&gt;
+    &lt;!-- name属性の値がCSSのclassの接頭辞になる --&gt;
+    &lt;!-- appear をつけると初期描画時にもトランジションを行う --&gt;
+    &lt;transition name=&quot;my-trnstn&quot; appear&gt;
+        &lt;div v-show=&quot;myToggle&quot;&gt;トランジションさせたい要素&lt;/div&gt;
+    &lt;/transition&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myToggle: true,
+    },
+</pre>
+<h6 class="pre-kind">style.css</h6>
+<pre class="prettyprint linenums:1" v-pre>
+/* my-trnstnが接頭辞。-active はトランジション/アニメーションの開始から終了するまで定義される*/
+.my-trnstn-enter-active, .my-trnstn-leave-active {
+    transition: opacity 1s;
+}
+/* -enter（-leave）は要素が追加（削除）される直前に定義され，1フレーム後に削除*/
+/* -enter-to（-leave-to）は-enter（-leave）が削除された後に定義され，トランジション/アニメーションが終了すると削除される*/
+.my-trnstn-enter, .my-trnstn-leave-to {
+    opacity: 0;
+}
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myToggle=!myToggle">切替</button>
+                    <!-- name属性の値がCSSのclassの接頭辞になる -->
+                    <!-- appear をつけると初期描画時にもトランジションを行う -->
+                    <transition name="my-trnstn" appear>
+                        <div v-show="myToggle">トランジションさせたい要素</div>
+                    </transition>
+                </div>
+            </section>
 
+            <h2>SECTION29 単一要素トランジション</h2>
+            <h3>EnterとLeaveで別々のスタイルを定義する</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;myToggle2=!myToggle2&quot;&gt;切替&lt;/button&gt;
+    &lt;transition name=&quot;my-trnstn2&quot; appear&gt;
+        &lt;div v-show=&quot;myToggle2&quot;&gt;トランジションさせたい要素&lt;/div&gt;
+    &lt;/transition&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myToggle2: true,
+    },
+</pre>
+<pre class="prettyprint linenums:1" v-pre>
+.my-trnstn2-enter-active, .my-trnstn2-leave-active {
+    transition: opacity 1s, transform 1s;
+}
+.my-trnstn2-enter{
+    opacity: 0;
+    transform: translateX(100px);
+}
+.my-trnstn2-leave-to {
+    opacity: 0;
+    transform: translateY(50px);
+}
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myToggle2=!myToggle2">切替</button>
+                    <transition name="my-trnstn2" appear>
+                        <div v-show="myToggle2">トランジションさせたい要素</div>
+                    </transition>
+                </div>
+            </section>
 
+            <h3>複数の要素をグループ化する</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;transition name=&quot;my-trnstn&quot; appear&gt;
+    &lt;!-- transitionの中は1つの要素しか書けないが、条件分岐で結果が要素1つならOK --&gt;
+        &lt;div v-if=&quot;myType === &#039;A&#039;&quot; key=&quot;a&quot;&gt;Aの要素を表示&lt;/div&gt;
+        &lt;div v-else-if=&quot;myType === &#039;B&#039;&quot; key=&quot;b&quot;&gt;Bの要素を表示&lt;/div&gt;
+        &lt;div v-else key=&quot;c&quot;&gt;Cの要素を表示&lt;/div&gt;
+    &lt;/transition&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType&quot; value=&quot;A&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType&quot; value=&quot;B&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType&quot; value=&quot;C&quot;&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myType: "B",
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <transition name="my-trnstn" appear>
+                        <!-- transitionの中は1つの要素しか書けないが、条件分岐で結果が要素1つならOK -->
+                        <div v-if="myType === 'A'" key="a">Aの要素を表示</div>
+                        <div v-else-if="myType === 'B'" key="b">Bの要素を表示</div>
+                        <div v-else key="c">Cの要素を表示</div>
+                    </transition>
+                    <input type="radio" v-model="myType" value="A">
+                    <input type="radio" v-model="myType" value="B">
+                    <input type="radio" v-model="myType" value="C">
+                </div>
+            </section>
 
+            <h3>EnterとLeaveのタイミングを変更する</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;transition name=&quot;my-trnstn&quot; mode=&quot;out-in&quot;&gt;
+    &lt;!-- transitionの中は1つの要素しか書けないが、条件分岐で結果が要素1つならOK --&gt;
+        &lt;div v-if=&quot;myType2 === &#039;A&#039;&quot; key=&quot;a&quot;&gt;Aの要素を表示&lt;/div&gt;
+        &lt;div v-else-if=&quot;myType2 === &#039;B&#039;&quot; key=&quot;b&quot;&gt;Bの要素を表示&lt;/div&gt;
+        &lt;div v-else key=&quot;c&quot;&gt;Cの要素を表示&lt;/div&gt;
+    &lt;/transition&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType2&quot; value=&quot;A&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType2&quot; value=&quot;B&quot;&gt;
+    &lt;input type=&quot;radio&quot; v-model=&quot;myType2&quot; value=&quot;C&quot;&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myType: "B",
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <!-- mode="out-in"でLeaveトランジションが終わってからEnterトランジションを開始する -->
+                    <!-- → 消える途中と現れる途中が同時に表示されないからカクっとしない！ -->
+                    <transition name="my-trnstn" mode="out-in">
+                        <div v-if="myType2 === 'A'" key="a">Aの要素を表示</div>
+                        <div v-else-if="myType2 === 'B'" key="b">Bの要素を表示</div>
+                        <div v-else key="c">Cの要素を表示</div>
+                    </transition>
+                    <input type="radio" v-model="myType2" value="A">
+                    <input type="radio" v-model="myType2" value="B">
+                    <input type="radio" v-model="myType2" value="C">
+                </div>
+            </section>
 
+            <h3>キーの変化によるトランジションの発動</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;myCount++&quot;&gt;カウントを増加&lt;/button&gt;
+    &lt;transition&gt;
+        &lt;!-- keyの値が変化するとトランジションが発動 --&gt;
+        &lt;div v-bind:key=&quot;myCount&quot;&gt;{{myCount}}&lt;/div&gt;
+    &lt;/transition&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myCount: 0,
+    },
+</pre>
+<h6 class="pre-kind">style.css</h6>
+<pre class="prettyprint linenums:1" v-pre>
+.v-enter-active, .v-leave-active {
+    transition: opacity 1s;
+}
+.v-leave-active {
+    position: absolute;
+}
+.v-enter, .v-leave-to {
+    opacity: 0;
+}
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myCount++">カウントを増加</button>
+                    <transition>
+                        <!-- keyの値が変化するとトランジションが発動 -->
+                        <div v-bind:key="myCount">{{myCount}}</div>
+                    </transition>
+                </div>
+            </section>
 
+            <h2>SECTION30 リストトランジション</h2>
+            <h3></h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;myOrder=!myOrder&quot;&gt;並び変え&lt;/button&gt;
+    &lt;!-- &lt;ul&gt;の代わりにtag=&quot;ul&quot;をつけたtransition-groupにする --&gt;
+    &lt;transition-group tag=&quot;ul&quot;&gt;
+        &lt;li v-for=&quot;item in mySortedList&quot; v-bind:key=&quot;item.id&quot;&gt;
+            ID: {{ item.id }}, name: {{ item.name }}, score: {{ item.score }}
+        &lt;/li&gt;
+    &lt;/transition-group&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myOrder: false,
+        myGoodsList: [
+            {id: 1, name: 'hoge', score: 100 },
+            {id: 2, name: 'fuga', score: 200 },
+            {id: 3, name: 'piyo', score: 500 },
+            {id: 4, name: 'foo', score: 9000 },
+            {id: 5, name: 'bar', score: 1200 },
+        ],
+    },
+</pre>
+<h6 class="pre-kind">style.css</h6>
+<pre class="prettyprint linenums:1" v-pre>
+/* 追加・削除・並び変えで順番が動いたときに付与される */
+/* flexboxやinline-blockで改行された要素の、X座標とY座標どちらの動きにも対応 */
+.v-move {
+    transition: transform 2s;
+}
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myOrder=!myOrder">並び変え</button>
+                    <!-- <ul>の代わりにtag="ul"をつけたtransition-groupにする -->
+                    <transition-group tag="ul">
+                        <li v-for="item in mySortedList" v-bind:key="item.id">
+                            ID: {{ item.id }}, name: {{ item.name }}, score: {{ item.score }}
+                        </li>
+                    </transition-group>
+                </div>
+            </section>
 
+            <h2>SECTION31 </h2>
+            <h3>SVGのトランジション</h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;button v-on:click=&quot;myChangeSVG=!myChangeSVG&quot;&gt;切替&lt;/button&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot;&gt;
+        &lt;transition&gt;
+            &lt;!-- keyの変化でSVGがなめらかにトランジション --&gt;
+            &lt;circle cx=&quot;80&quot; cy=&quot;75&quot; v-bind=&quot;myItem&quot; v-bind:key=&quot;myChangeSVG&quot;/&gt;
+        &lt;/transition&gt;
+    &lt;/svg&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myChangeSVG: false,
+        myCircleT: {
+            r: 50,
+            fill: 'red',
+        },
+        myCircleF: {
+            r: 70,
+            fill: 'skyblue',
+        },
+    },
+</pre>
+<h6 class="pre-kind">style.css</h6>
+<pre class="prettyprint linenums:1" v-pre>
+    .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+    }
+    .v-leave-active {
+        position: absolute;
+    }
+    .v-enter, .v-leave-to {
+        opacity: 0;
+    }
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myChangeSVG=!myChangeSVG">切替</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                        <transition>
+                            <!-- keyの変化でSVGがなめらかにトランジション -->
+                            <circle cx="80" cy="75" v-bind="myItem" v-bind:key="myChangeSVG"/>
+                        </transition>
+                    </svg>
+                </div>
+            </section>
 
+            <h2>SECTION32 トランジションフック</h2>
+            <h3></h3>
+            <section>
+<h6 class="pre-kind">index.html</h6>
+<pre class="prettyprint linenums:10" v-pre>
+    &lt;div class=&quot;demo&quot;&gt;&lt;p&gt;実際の動作&lt;/p&gt;
+    &lt;!-- イベントフックとしてenter，after-enterを設定 --&gt;
+    &lt;transition v-on:enter=&quot;myEnter&quot; v-on:after-enter=&quot;myAftEnter&quot;&gt;
+        &lt;div v-if=&quot;myShowFlag&quot;&gt;example&lt;/div&gt;
+    &lt;/transition&gt;
+    &lt;!-- 使用できるイベントフック
+    ・before-enter
+    ・enter
+    ・after-enter
+    ・enter-cancelled
+    ・before-leave
+    ・leave
+    ・after-leave
+    ・leave-cancelled --&gt;
+&lt;/div&gt;
+</pre>
+<h6 class="pre-kind">main.js</h6>
+<pre class="prettyprint linenums:3" v-pre>
+    data: {
+        myShowFlag: false,
+    },
+    methods: {
+        myEnter: function(el done) {
+            // .v-enter が付与され、DOMに要素が追加された後の処理
+            console.log('トランジション開始')
+            setTimeout(done, 1000)  // 1000ms後にmyEnterを終了してafter-enterに遷移
+        },
+        myAftEnter: function(el) {
+            // トランジションが終わる、またはenterでdone()した後の処理
+            console.log('トランジション終了')
+        },
+    },
+</pre>
+                <div class="demo"><p>実際の動作</p>
+                    <button v-on:click="myShowFlag=!myShowFlag">コンソールログに開始と終了を合図</button>
+                    <!-- イベントフックとしてenter，after-enterを設定 -->
+                    <transition v-on:enter="myEnter" v-on:after-enter="myAftEnter">
+                        <div v-if="myShowFlag">example</div>
+                    </transition>
+                    <!-- 使用できるイベントフック
+                    ・before-enter
+                    ・enter
+                    ・after-enter
+                    ・enter-cancelled
+                    ・before-leave
+                    ・leave
+                    ・after-leave
+                    ・leave-cancelled -->
+                </div>
+            </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
+    </div>
 
 
 
@@ -1696,8 +2011,8 @@ var myapp = new Vue({
             <li class="done"><a href="#myapp2">CHAPTER 2</a></li>
             <li class="done"><a href="#myapp3">CHAPTER 3</a></li>
             <li class="done"><a href="#myapp4">CHAPTER 4</a></li>
-            <li class=""><a href="#myapp5">CHAPTER 5</a></li>
-            <li class=""><a href="#myapp6">CHAPTER 6</a></li>
+            <li class="done"><a href="#myapp5">CHAPTER 5</a></li>
+            <li class="done"><a href="#myapp6">CHAPTER 6</a></li>
             <li class=""><a href="#myapp7">CHAPTER 7</a></li>
             <li class=""><a href="#myapp8">CHAPTER 8</a></li>
             <li class=""><a href="#myapp9">CHAPTER 9</a></li>

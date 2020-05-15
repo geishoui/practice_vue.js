@@ -118,12 +118,6 @@ var myapp2 = new Vue({
             this.myGoodsList.splice(index, 1)
         },
     },
-    
-    // 算出プロパティ
-    computed: {
-
-    },
-    
     // ライフサイクルフック
     // created: function() {
     //     axios.get('mylist.json').then(function(response) {
@@ -155,6 +149,7 @@ var myapp3 = new Vue({
         mySelect: 'B',
         mySelect: ['B'],
         myImage: '',
+        myColor: '#ff7800',
         myLazySync: 'フォーカスが外れたりエンターを押すと同期する',
         myTrim: '\n   文字列前後の改行や   複数半角Spaceを削除',
 
@@ -206,12 +201,6 @@ var myapp3 = new Vue({
             }
         },
     },
-    
-    // 算出プロパティ。関数で処理された結果をデータとして返す
-    computed: {
-        
-    },
-    
     // ライフサイクルフック。特定のタイミングで自動的に呼び出される関数
     created: function() {
         // ハンドラを登録
@@ -423,7 +412,7 @@ Vue.component('my-tag', {
 Vue.component('my-named-slot', {
     template:   '<div>'+
                     '<h3><slot name="my-head3">デフォルト値</slot></h3>'+
-                    '<h4><slot name="my-head4">デフォルト値<slot></h4>'+
+                    '<h4><slot name="my-head4">デフォルト値</slot></h4>'+
                 '</div>'
 })
 Vue.component('my-component-a', {
@@ -467,9 +456,80 @@ var myapp5 = new Vue({
             return this.myComponentType[this.myToggle]
         }
     },
+})
+
+var myapp6 = new Vue({
+    // マウントする要素
+    el: '#myapp6',
     
-    // ライフサイクルフック。特定のタイミングで自動的に呼び出される関数
-    created: function() {
-        // 他にもbeforeCreate, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed, errorCaptured
+    // アプリケーションで使用するデータ
+    data: {
+        myToggle: true,
+        myToggle2: true,
+
+        myType: "B",
+        myType2: "C",
+
+        myCount: 0,
+
+        myOrder: false,
+        myGoodsList: [
+            {id: 1, name: 'hoge', score: 100 },
+            {id: 2, name: 'fuga', score: 200 },
+            {id: 3, name: 'piyo', score: 500 },
+            {id: 4, name: 'foo', score: 9000 },
+            {id: 5, name: 'bar', score: 1200 },
+        ],
+
+        myChangeSVG: false,
+        myCircleT: {
+            r: 50,
+            fill: 'red',
+        },
+        myCircleF: {
+            r: 70,
+            fill: 'skyblue',
+        },
+
+        myShowFlag: false,
+    },
+    
+    // アプリケーションで使用するメソッド
+    methods: {
+        myAddGoods: function() {
+            //push()で配列にデータを追加
+            this.myGoodsList.push({
+                id: this.myGoodsList.length + 1,
+                name: "name",
+                score: 289,
+            })
+        },
+        myRemoveGoods: function(index) {
+            // spliceで受け取ったindexの位置から1個の要素を削除
+            this.myGoodsList.splice(index, 1)
+        },
+
+        myEnter: function(el, done) {
+            // .v-enter が付与され、DOMに要素が追加された後の処理
+            console.log('トランジション開始')
+            setTimeout(done, 1000)  // 1000ms後にmyEnterを終了してafter-enterに遷移
+        },
+        myAftEnter: function(el) {
+            // トランジションが終わる、またはenterでdone()した後の処理
+            console.log('トランジション終了')
+        },
+    },
+    
+    // 算出プロパティ。関数で処理された結果をデータとして返す
+    computed: {
+        // orderの値でリストの順番を反転する算出プロパティ
+        mySortedList: function () {
+            // LodashのorderByメソッドを使用
+            return _.orderBy(this.myGoodsList, 'score', this.myOrder ? 'desc' : 'asc')
+        },
+
+        myItem: function() {
+            return this.myChangeSVG ? this.myCircleT : this.myCircleF
+        },
     },
 })
